@@ -46,7 +46,12 @@ len = length(imgDir);
    
    harriTren = 1-exp(-t*(C1+C2+C3));
 
-      WstrucTen(:,:,i)=harriTren;
+   thr1 = mean(harriTren(:))+2*std(harriTren(:));
+    harriTren1 = (1+harriTren).* (( harriTren-thr1)>0);
+    harriTren2 = harriTren.* (( harriTren-thr1)<0);
+    harriTren_total = harriTren1+harriTren2;
+
+      WstrucTen(:,:,i)=harriTren_total;
 
     end
     
